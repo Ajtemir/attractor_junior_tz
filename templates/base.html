@@ -43,7 +43,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul class="nav-inner">
-          <li class="active"><a href="index.html">Главная</a></li>
+          <li class="active"><a href="{% url 'blog:home' %}">Главная</a></li>
           <li class="drop-down"><a href="">Категории</a>
             <ul>
 <!--              <li><a href="#about">About Us</a></li>-->
@@ -51,7 +51,7 @@
 
               <li class="drop-down"><a href="#">Командные</a>
                 <ul>
-                  <li><a href="#">Футбол</a></li>
+                  <li><a href="{% url 'blog:football' %}">Футбол</a></li>
                   <li><a href="#">Баскетбол</a></li>
 <!--                  <li><a href="#">Deep Drop Down 3</a></li>-->
 <!--                  <li><a href="#">Deep Drop Down 4</a></li>-->
@@ -60,7 +60,7 @@
                 <li class="drop-down"><a href="#">Единоборства</a>
                 <ul>
                   <li><a href="#">Бокс</a></li>
-                  <li><a href="#">Дзюдо</a></li>
+                  <li><a href="{% url 'blog:judo' %}">Дзюдо</a></li>
 <!--                  <li><a href="#">Deep Drop Down 3</a></li>-->
 <!--                  <li><a href="#">Deep Drop Down 4</a></li>-->
 <!--                  <li><a href="#">Deep Drop Down 5</a></li>-->
@@ -68,13 +68,17 @@
               </li>
             </ul>
           </li>
-          <li><a href="#services">Services</a></li>
+<!--          <li><a href="#services">Services</a></li>-->
 
-          <li class="nav-logo"><a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a></li>
-
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="nav-logo"><a href="{% url 'blog:home' %}"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'blog:profile' %}">Профиль</a></li>
+          <li><a href="{% url 'exit' %}">Выйти</a></li>
+          {% else %}
+          <li><a href="{% url 'reg' %}">Зарегистрироваться</a></li>
+          <li><a href="{% url 'login' %}">Войти</a></li>
+          {% endif %}
+<!--          <li><a href="#contact">Contact</a></li>-->
 
         </ul>
       </nav><!-- .nav-menu -->
