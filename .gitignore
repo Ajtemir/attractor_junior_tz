@@ -132,6 +132,7 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
+local_settings.py
 
 # mkdocs documentation
 /site
