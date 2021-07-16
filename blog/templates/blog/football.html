@@ -33,7 +33,7 @@
               <h4>{{ article.title }}</h4>
               <p>{{ article.user }}</p>
               <div class="portfolio-links">
-                <a href="{{ MEDIA_URL }}{{ article.image }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                <a href="{{ article.image.url }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
                 <a href="{{ article.get_absolute_url }}" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
