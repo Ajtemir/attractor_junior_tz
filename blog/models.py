@@ -5,7 +5,8 @@ from django.urls import reverse
 
 class Category(models.Model):
     title = models.CharField(max_length=100)
-    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, related_name='parent', blank=True, null=True, default=None)
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, related_name='parent', blank=True, null=True,
+                                  default=None)
 
     class Meta:
         ordering = ('title',)
@@ -15,13 +16,14 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+
 class Article(models.Model):
     category = models.ForeignKey(Category,
                                  related_name='articles',
                                  on_delete=models.CASCADE,
                                  )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
-    title = models.CharField(max_length=150, db_index=True)
+    title = models.CharField(max_length=150, db_index=True, verbose_name='Название статьи')
     image = models.ImageField(upload_to='images', default='no_image.jpg', blank=True)
     description = models.TextField(max_length=1000, blank=True)
     created = models.DateTimeField(auto_now_add=True)

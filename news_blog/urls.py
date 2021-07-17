@@ -32,5 +32,4 @@ urlpatterns = [
     path('exit', authViews.LogoutView.as_view(template_name='blog/home.html'), name="exit"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from . import settings
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
