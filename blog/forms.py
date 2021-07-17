@@ -3,6 +3,7 @@ from blog.models import Article, Category
 
 
 class ArticleForm(forms.ModelForm):
+
     class Meta:
         model = Article
         exclude = ['user', 'create', 'uploaded']
