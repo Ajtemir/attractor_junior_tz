@@ -37,22 +37,31 @@ def football(request):
 
 @login_required(login_url='login')
 def judo(request):
-    category = Category.objects.get(title='Дзюдо')
-    articles = Article.objects.filter(category=category).order_by('id')
+    try:
+        category = Category.objects.get(title='Дзюдо')
+        articles = Article.objects.filter(category=category).order_by('id')
+    except:
+        articles = None
     return render(request, 'blog/judo.html', {'articles': articles})
 
 
 @login_required(login_url='login')
 def box(request):
-    category = Category.objects.get(title='Бокс')
-    articles = Article.objects.filter(category=category).order_by('id')
+    try:
+        category = Category.objects.get(title='Бокс')
+        articles = Article.objects.filter(category=category).order_by('id')
+    except:
+        articles = None
     return render(request, 'blog/box.html', {'articles': articles})
 
 
 @login_required(login_url='login')
 def basketball(request):
-    category = Category.objects.get(title='Баскетбол')
-    articles = Article.objects.filter(category=category).order_by('id')
+    try:
+        category = Category.objects.get(title='Баскетбол')
+        articles = Article.objects.filter(category=category).order_by('id')
+    except:
+        articles = None
     return render(request, 'blog/basketball.html', {'articles': articles})
 
 
@@ -68,10 +77,6 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    # title = forms.CharField(label='Название', widget=forms.TextInput(
-    #     attrs={'class': 'form-control', 'placeholder': 'Введите название статьи'}))
-    # description = forms.CharField(label='Статья', widget=forms.TextInput(
-    #     attrs={'class': 'form-control', 'placeholder': 'Напишите статью'}))
     form_class = ArticleForm
     template_name = 'blog/create.html'
     success_url = reverse_lazy('blog:home')
@@ -92,7 +97,6 @@ class ArticleUpdateView(UpdateView):
 
 class ArticleDeleteView(DeleteView):
     model = Article
-    # template_name = 'cities/delete.html'
     success_url = reverse_lazy('blog:home')
 
     def get(self, request, *args, **kwargs):
