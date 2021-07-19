@@ -21,10 +21,10 @@ media/
 *.py[cod]
 *$py.class
 *.sqlite3
-
+.idea
 # C extensions
 *.so
-
+mydb.sqlite3
 # Distribution / packaging
 .Python
 build/
