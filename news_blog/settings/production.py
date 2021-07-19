@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import cloudinary
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Own adding
-import os
 
 DB_NAME = os.environ.get('DB_NAME')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
@@ -29,16 +29,12 @@ STATICFILES_DIRS = [
 ]
 LOGIN_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 CLOUD_NAME = os.environ.get('CLOUD_NAME')
 API_KEY = os.environ.get('API_KEY')
 API_SECRET = os.environ.get('API_SECRET')
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': CLOUD_NAME,
-    'API_KEY': API_KEY,
-    'API_SECRET': API_SECRET
-}
+cloudinary.config(cloud_name=CLOUD_NAME, api_key=API_KEY, api_secret=API_SECRET)
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

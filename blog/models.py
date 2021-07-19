@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -24,7 +25,7 @@ class Article(models.Model):
                                  )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     title = models.CharField(max_length=150, db_index=True, verbose_name='Название статьи')
-    image = models.ImageField(upload_to='images/', default='no_image_r619a3.jpg', blank=True)
+    image = CloudinaryField('image')
     description = models.TextField(max_length=1000, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     uploaded = models.DateTimeField(auto_now=True)
