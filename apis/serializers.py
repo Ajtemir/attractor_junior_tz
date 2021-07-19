@@ -9,6 +9,12 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['title']
 
 class ArticleSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    def get_image(self, article):
+        request = self.context.get('request')
+        image_url = article.image.url
+        return request.build_absolute_uri(image_url)
+
     class Meta:
         model = Article
         fields = '__all__'
